@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="New Button"
         android:id="@+id/button"
-        android:onClick="startData"
+        android:onClick="storeData"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 

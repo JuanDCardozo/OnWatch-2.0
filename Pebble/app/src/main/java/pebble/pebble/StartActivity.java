@@ -10,6 +10,12 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+    }
+
+    public void switchMode(){
+        RelativeLayout relativeLayoutB = (RelativeLayout) findViewById(R.id.relativeLayout);
+        relativeLayoutB.setBackgroundResource(R.color.alertMode);
     }
 
 }
