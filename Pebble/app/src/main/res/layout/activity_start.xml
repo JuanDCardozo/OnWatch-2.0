@@ -17,8 +17,9 @@
         android:onClick="switchMode"
         android:id="@+id/modeButton"
         android:layout_above="@+id/resetButton"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="86dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,22 +38,16 @@
         android:text="Safe Mode"
         android:id="@+id/resetButton"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp" />
 
-    <EditText
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/message"
-        android:background="@color/textField"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="- You are secure/safe"
+        android:id="@+id/textView"
         android:layout_below="@+id/modeDisplay"
-        android:layout_marginTop="42dp"
-        android:layout_above="@+id/modeButton"
-        android:layout_alignRight="@+id/modeButton"
-        android:layout_alignEnd="@+id/modeButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="Please  check on me." />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
