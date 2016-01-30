@@ -18,49 +18,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Contact 1"
-        android:ems="10"
-        android:id="@+id/contact1"
-        android:layout_below="@+id/contacts"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/phoneNum1"
-        android:text="Phone Number"
-        android:layout_below="@+id/contact1"
-        android:layout_alignLeft="@+id/contact1"
-        android:layout_alignStart="@+id/contact1" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Contact 2"
-        android:ems="10"
-        android:id="@+id/contact2"
-        android:layout_above="@+id/phoneNum2"
-        android:layout_alignLeft="@+id/phoneNum1"
-        android:layout_alignStart="@+id/phoneNum1" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/phoneNum2"
-        android:text="Phone Number"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/contact2"
-        android:layout_alignStart="@+id/contact2" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,26 +27,11 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <EditText
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Contact 3"
-        android:ems="10"
-        android:id="@+id/contact3"
-        android:layout_below="@+id/phoneNum2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/phoneNum3"
-        android:layout_below="@+id/contact3"
-        android:layout_alignLeft="@+id/contact3"
-        android:layout_alignStart="@+id/contact3"
-        android:text="Phone Number" />
+        android:id="@+id/listView"
+        android:layout_below="@+id/contacts"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
