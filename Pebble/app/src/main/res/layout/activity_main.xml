@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:text="New Button"
         android:id="@+id/button"
+        android:onClick="startData"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
@@ -45,7 +46,7 @@
         android:text="Contact 2"
         android:ems="10"
         android:id="@+id/contact2"
-        android:layout_above="@+id/phoneNumber2"
+        android:layout_above="@+id/phoneNum2"
         android:layout_alignLeft="@+id/phoneNum1"
         android:layout_alignStart="@+id/phoneNum1" />
 
@@ -54,7 +55,7 @@
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:ems="10"
-        android:id="@+id/phoneNumber2"
+        android:id="@+id/phoneNum2"
         android:text="Phone Number"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/contact2"
@@ -76,7 +77,7 @@
         android:text="Contact 3"
         android:ems="10"
         android:id="@+id/contact3"
-        android:layout_below="@+id/phoneNumber2"
+        android:layout_below="@+id/phoneNum2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp" />
 

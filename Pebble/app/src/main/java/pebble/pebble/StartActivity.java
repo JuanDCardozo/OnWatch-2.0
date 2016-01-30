@@ -2,6 +2,7 @@ package pebble.pebble;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.RelativeLayout;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -10,4 +11,5 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
     }
+    
 }
