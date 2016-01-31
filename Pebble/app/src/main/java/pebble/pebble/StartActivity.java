@@ -1,5 +1,6 @@
 package pebble.pebble;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
@@ -17,14 +18,72 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.widget.TextView;
 
+import com.getpebble.android.kit.PebbleKit;
+import com.getpebble.android.kit.util.PebbleDictionary;
+
+import java.util.UUID;
+
 public class StartActivity extends AppCompatActivity {
-    int mode = 1;
+    // Private Global Variables
+    private int mode = 1;
+    private PebbleKit.PebbleDataReceiver mReceiver;
+
+    private static final int
+            KEY_BUTTON_EVENT = 0,
+            BUTTON_EVENT_UP = 1,
+            BUTTON_EVENT_DOWN = 3,
+            BUTTON_EVENT_SELECT = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mReceiver = new PebbleKit.PebbleDataReceiver(UUID.fromString("4728fd50-df72-432d-8ff3-ecb4f158ec05")) {
+
+            @Override
+            public void receiveData(Context context, int transactionId, PebbleDictionary data) {
+                //ACK the message
+                PebbleKit.sendAckToPebble(context, transactionId);
+
+                //Check the key exists
+                if(data.getUnsignedIntegerAsLong(KEY_BUTTON_EVENT) != null) {
+                    int button = data.getUnsignedIntegerAsLong(KEY_BUTTON_EVENT).intValue();
+
+                    switch(button) {
+                        case BUTTON_EVENT_UP:
+                            Button eThreat = (Button) findViewById(R.id.escalateThreat);
+                            checkThreat(eThreat);
+                            //The UP button was pressed
+                            break;
+                        case BUTTON_EVENT_DOWN:
+                            Button dThreat = (Button) findViewById(R.id.difuseThreat);
+                            checkThreat(dThreat);
+                            //The DOWN button was pressed
+                            break;
+                        case BUTTON_EVENT_SELECT:
+                            //The SELECT button was pressed
+                            break;
+                    }
+                }
+            }
+
+        };
+
+        PebbleKit.registerReceivedDataHandler(this, mReceiver);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        unregisterReceiver(mReceiver);
     }
 
     public void sendSMS(String[] phoneNumbers, String message){
