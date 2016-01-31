@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">Pebble</string>
-    <string name="safeMode">Safe Mode</string>
-    <string name="alertMode">Alert Mode!</string>
-    <string name="panicMode">Panic Mode!!</string>
-    <string name="policeMode">911 Mode!!!</string>
+    <string name="safeModeTxt">Safe Mode</string>
+    <string name="alertModeTxt">Alert Mode!</string>
+    <string name="threatModeTxt">Threat Mode!</string>
+    <string name="panicModeTxt">Emergency Mode!</string>
+    <string name="safeModeDesc">You feel safe.</string>
+    <string name="alertModeDesc">You feel uncomfortable</string>
+    <string name="threatModeDesc">There is an imminent danger/threat</string>
+    <string name="panicModeDesc">EMERGENCY! 911 was contacted!</string>
 </resources>

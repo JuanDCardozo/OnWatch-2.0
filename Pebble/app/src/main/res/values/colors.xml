@@ -2,10 +2,11 @@
 <resources>
     <color name="colorPrimary">#8e8e8e</color>
     <color name="colorPrimaryDark">#0e0e0e</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="safeMode">#c462ea62</color>
-    <color name="alertMode">#d8fcf048</color>
-    <color name="threatMode">#c9fa9609</color>
-    <color name="panicMode">#ea3330</color>
-    <color name="textField">#d5ffffff</color>
+    <color name="colorAccent">#f2fcf3f6</color>
+    <color name="safeModeCol">#c462ea62</color>
+    <color name="alertModeCol">#d8fcf048</color>
+    <color name="threatModeCol">#c9fa9609</color>
+    <color name="panicModeCol">#ea3330</color>
+    <color name="textFieldB">#d53d3c3c</color>
+    <color name="textField">#fcfcfc</color>
 </resources>

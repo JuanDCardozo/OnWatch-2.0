@@ -8,47 +8,52 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/safeMode"
+    android:background="@color/safeModeCol"
     tools:context="pebble.pebble.StartActivity">
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Alert Mode"
+        android:layout_height="@dimen/button_height"
+        android:background="@color/colorAccent"
+        android:text="@string/safeModeTxt"
+        android:textColor="@color/textFieldB"
         android:onClick="checkThreat"
-        android:id="@+id/modeButton"
-        android:layout_above="@+id/resetButton"
+        android:id="@+id/escalateThreat"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="86dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Safe Mode"
-        android:textSize="60sp"
+        android:text="@string/safeModeTxt"
+        android:textSize="50sp"
+        android:textColor="@color/textField"
         android:id="@+id/modeDisplay"
         android:layout_marginTop="46dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Safe Mode"
-        android:id="@+id/resetButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:text="@string/safeModeTxt"
+        android:textColor="@color/textFieldB"
+        android:background="@color/colorAccent"
+        android:id="@+id/difuseThreat"
         android:onClick="checkThreat"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="- You are secure/safe"
-        android:id="@+id/textView"
+        android:text="@string/safeModeDesc"
+        android:textColor="@color/textField"
+        android:id="@+id/modeDescription"
         android:layout_below="@+id/modeDisplay"
         android:layout_centerHorizontal="true" />
 
