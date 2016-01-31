@@ -60,7 +60,7 @@ void up_click_handler(ClickRecognizerRef recognizer, void *context)
   if(level == 3)
     {
       text_layer_set_text(layer, " ");
-      text_layer_set_text(layer1, "HOLD SELECT");
+      text_layer_set_text(layer1, "HOLD UP FOR 911");
       text_layer_set_text(layer2, "THREAT");
       text_layer_set_text(layer3, "ALERT");
       text_layer_set_text(layer4, "v");
@@ -68,7 +68,7 @@ void up_click_handler(ClickRecognizerRef recognizer, void *context)
     send_int(KEY_BUTTON_EVENT, BUTTON_EVENT_UP);
 }
 
-static void select_long_click_handler(ClickRecognizerRef recognizer, void *context)
+static void up_long_click_handler(ClickRecognizerRef recognizer, void *context)
 {
   text_layer_set_text(layer2, "911");
   text_layer_set_text(layer, "");
@@ -76,10 +76,10 @@ static void select_long_click_handler(ClickRecognizerRef recognizer, void *conte
   text_layer_set_text(layer3, "THREAT");
   text_layer_set_text(layer4, "v");
   level = 4;
-  send_int(KEY_BUTTON_EVENT, BUTTON_EVENT_SELECT);
+  send_int(KEY_BUTTON_EVENT, BUTTON_EVENT_UP);
 }
 
-static void select_long_click_release_handler(ClickRecognizerRef recognizer, void *context)
+static void up_long_click_release_handler(ClickRecognizerRef recognizer, void *context)
 {
   text_layer_set_text(layer2, "911");
   text_layer_set_text(layer, "");
@@ -87,7 +87,7 @@ static void select_long_click_release_handler(ClickRecognizerRef recognizer, voi
   text_layer_set_text(layer3, "THREAT");
   text_layer_set_text(layer4, "v");
   level = 4;
-  send_int(KEY_BUTTON_EVENT, BUTTON_EVENT_DOWN);
+  send_int(KEY_BUTTON_EVENT, BUTTON_EVENT_UP);
 } 
 
 static void down_click_handler(ClickRecognizerRef recognizer, void *context)
@@ -106,19 +106,21 @@ static void down_click_handler(ClickRecognizerRef recognizer, void *context)
   if(level == 2)
     {
       text_layer_set_text(layer, "^");
-      text_layer_set_text(layer1, "THREAT");
-      text_layer_set_text(layer2, "ALERT");
-      text_layer_set_text(layer3, "SAFE");
-      text_layer_set_text(layer4, "v");
+      text_layer_set_text(layer1, "ALERT");
+      text_layer_set_text(layer2, "SAFE");
+      text_layer_set_text(layer3, " ");
+      text_layer_set_text(layer4, " ");
+      level = 1;
       
     }
   if(level == 3)
     {
-      text_layer_set_text(layer, " ");
-      text_layer_set_text(layer1, "SELECT");
-      text_layer_set_text(layer2, "THREAT");
-      text_layer_set_text(layer3, "ALERT");
-      text_layer_set_text(layer4, "v");
+      text_layer_set_text(layer, "^");
+      text_layer_set_text(layer1, "ALERT");
+      text_layer_set_text(layer2, "SAFE");
+      text_layer_set_text(layer3, " ");
+      text_layer_set_text(layer4, " ");
+      level = 1;
     }
   send_int(KEY_BUTTON_EVENT, BUTTON_EVENT_DOWN);
 }
@@ -126,7 +128,7 @@ static void down_click_handler(ClickRecognizerRef recognizer, void *context)
 static void click_config_provider(void *context)
 {
   window_single_click_subscribe(BUTTON_ID_UP, up_click_handler);
-  window_long_click_subscribe(BUTTON_ID_SELECT, 2000, select_long_click_handler, select_long_click_release_handler);
+  window_long_click_subscribe(BUTTON_ID_UP, 2000, up_long_click_handler, up_long_click_release_handler);
   window_single_click_subscribe(BUTTON_ID_DOWN, down_click_handler);
 }
 
