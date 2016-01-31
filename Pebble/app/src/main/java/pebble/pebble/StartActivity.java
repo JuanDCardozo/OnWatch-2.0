@@ -105,7 +105,7 @@ public class StartActivity extends AppCompatActivity {
 
     }
 
-    /*new CountDownTimer(5000, 1000) {
+    /*new CountDownTimer(3000, 1000) {
 
         public void onTick(long millisUntilFinished) {
             displayMode.setText("seconds remaining: " + millisUntilFinished / 1000);
@@ -142,6 +142,7 @@ public class StartActivity extends AppCompatActivity {
                 relativeLayoutB.setBackgroundResource(R.color.safeModeCol);
                 displayMode.setText(R.string.safeModeTxt);
                 descriptionMode.setText(R.string.safeModeDesc);
+                PebbleKit.sendDataToPebble(Context context, UUID.fromString("4728fd50-df72-432d-8ff3-ecb4f158ec05"),);
 
                 break;
             case 2: // Alert Mode

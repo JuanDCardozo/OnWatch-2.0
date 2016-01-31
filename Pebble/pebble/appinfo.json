@@ -9,9 +9,10 @@
     "resources": {
         "media": []
     },
-    "sdkVersion": "3",
+    "sdkVersion": "2",
     "shortName": "Guard",
     "uuid": "4728fd50-df72-432d-8ff3-ecb4f158ec05",
+    "versionCode": 1,
     "versionLabel": "1.0",
     "watchapp": {
         "watchface": false

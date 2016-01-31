@@ -76,7 +76,7 @@ static void down_click_handler(ClickRecognizerRef recognizer, void *context)
   if(level == 1)
     text_layer_set_text(layer1, "SAFE");
   if(level == 2)
-    text_layer_set_text(layer1, "UNEASY");
+    text_layer_set_text(layer1, "ALERT");
   if(level == 3)
     text_layer_set_text(layer1, "THREAT");
   send_int(KEY_BUTTON_EVENT, BUTTON_EVENT_DOWN);
