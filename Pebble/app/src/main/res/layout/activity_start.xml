@@ -19,7 +19,8 @@
         android:textColor="@color/textFieldB"
         android:onClick="checkThreat"
         android:id="@+id/escalateThreat"
-        android:layout_centerVertical="true"
+        android:visibility="invisible"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -31,8 +32,7 @@
         android:textSize="50sp"
         android:textColor="@color/textField"
         android:id="@+id/modeDisplay"
-        android:layout_marginTop="46dp"
-        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -45,7 +45,8 @@
         android:onClick="checkThreat"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:visibility="invisible" />
 
     <TextView
         android:layout_width="wrap_content"
