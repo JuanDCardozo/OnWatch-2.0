@@ -1,6 +1,7 @@
 package pebble.pebble;
 
 import android.content.Context;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
@@ -104,13 +105,23 @@ public class StartActivity extends AppCompatActivity {
 
     }
 
+    /*new CountDownTimer(5000, 1000) {
+
+        public void onTick(long millisUntilFinished) {
+            displayMode.setText("seconds remaining: " + millisUntilFinished / 1000);
+        }
+
+    public void onFinish() {
+        displayMode.setText("done!");
+    }
+}.start();*/
 
     public void checkThreat(View v) {
         //Variables Needed
         Button escalateThreat = (Button) findViewById(R.id.escalateThreat);
         Button vv = (Button) v;
         RelativeLayout relativeLayoutB = (RelativeLayout) findViewById(R.id.relativeLayout);
-        TextView displayMode = (TextView) findViewById(R.id.modeDisplay);
+        final TextView displayMode = (TextView) findViewById(R.id.modeDisplay);
         TextView descriptionMode = (TextView) findViewById(R.id.modeDescription);
 
         // CHeck the type of button press and whether to escalate threat or not.
@@ -139,6 +150,7 @@ public class StartActivity extends AppCompatActivity {
                 descriptionMode.setText(R.string.alertModeDesc);
                 break;
             case 3: // Threat Mode
+
                 relativeLayoutB.setBackgroundResource(R.color.threatModeCol);
                 displayMode.setText(R.string.threatModeTxt);
                 descriptionMode.setText(R.string.threatModeDesc);
