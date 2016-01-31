@@ -32,6 +32,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/listView"
         android:layout_below="@+id/contacts"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/button" />
 
 </RelativeLayout>
