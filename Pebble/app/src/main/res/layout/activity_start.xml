@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Alert Mode"
-        android:onClick="switchMode"
+        android:onClick="checkThreat"
         android:id="@+id/modeButton"
         android:layout_above="@+id/resetButton"
         android:layout_alignParentLeft="true"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:text="Safe Mode"
         android:id="@+id/resetButton"
-        android:onClick="swtichMode"
+        android:onClick="checkThreat"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp" />

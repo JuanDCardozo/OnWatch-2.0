@@ -5,7 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="safeMode">#c462ea62</color>
     <color name="alertMode">#d8fcf048</color>
-    <color name="panicMode">#c9fa9609</color>
-    <color name="policeMode">#ea3330</color>
+    <color name="threatMode">#c9fa9609</color>
+    <color name="panicMode">#ea3330</color>
     <color name="textField">#d5ffffff</color>
 </resources>

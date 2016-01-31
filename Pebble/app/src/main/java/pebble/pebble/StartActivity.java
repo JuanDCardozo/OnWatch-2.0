@@ -2,6 +2,7 @@ package pebble.pebble;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +16,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 
 public class StartActivity extends AppCompatActivity {
-
+    int mode = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,21 +24,16 @@ public class StartActivity extends AppCompatActivity {
 
     }
 
-    public void switchMode(View view){
-        String[] phoneNumbers= { "17073035048","14085068918","14084205595","14088565696" };
-        for(int i=0; i<4; i++) {
+    public void sendSMS(String[] phoneNumbers, String message){
+        for(int i=0; i<phoneNumbers.length; i++) {
             try {
-                SmsManager.getDefault().sendTextMessage(phoneNumbers[i], null, "Garrett Stoll has " +
-                        "indicated that hes is in a dangerous. His most recent location is: http://maps.google.com/maps?q=37.000560,-271.127123 Sent from Guard App", null, null);
+                SmsManager.getDefault().sendTextMessage(phoneNumbers[i], null,message, null, null);
             } catch (Exception e) {
                 AlertDialog.Builder alertDialogBuilder = new
                         AlertDialog.Builder(this);
                 AlertDialog dialog = alertDialogBuilder.create();
 
-
                 dialog.setMessage(e.getMessage());
-
-
                 dialog.show();
 
 
@@ -46,6 +42,38 @@ public class StartActivity extends AppCompatActivity {
 
     }
 
+
+    public void checkThreat(View v) {
+       // Button escalteMode = (Button) findViewById()
+        ++mode;
+        if (mode > 4) {
+            mode = 4;
+        }
+        RelativeLayout relativeLayoutB = (RelativeLayout) findViewById(R.id.relativeLayout);
+        switch (mode) {
+            case 1:// Safe Mode
+                relativeLayoutB.setBackgroundResource(R.color.safeMode);
+
+                break;
+            case 2: // Alert Mode
+                relativeLayoutB.setBackgroundResource(R.color.alertMode);
+                break;
+            case 3: // Threat Mode
+                relativeLayoutB.setBackgroundResource(R.color.threatMode);
+                String[] phone = {"14088565696"};
+                String lat = "12345543";
+                String lon = "345543";
+                String newName = String.format("Hello I am at google.com/%s,%s", lat, lon);
+                sendSMS(phone,"Hi, Its" + newName);
+                break;
+            case 4: //Panic Mode
+                relativeLayoutB.setBackgroundResource(R.color.panicMode);
+                break;
+
+        }
+
+
     }
+}
 
 
