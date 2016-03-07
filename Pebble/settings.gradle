@@ -1,1 +1,1 @@
-include ':app', ':pebblekit'
+include ':app', ':pebblekit', ':moto360'
