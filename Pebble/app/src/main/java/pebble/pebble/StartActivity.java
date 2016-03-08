@@ -33,6 +33,7 @@ import com.google.android.gms.location.LocationServices;
 
 import com.getpebble.android.kit.PebbleKit;
 import com.getpebble.android.kit.util.PebbleDictionary;
+import com.google.android.gms.wearable.Wearable;
 
 import java.util.UUID;
 
@@ -54,6 +55,7 @@ public class StartActivity extends AppCompatActivity implements GoogleApiClient.
     public static final String Name5 = "name5Key";
     public static final String Phone5 = "phone5Key";
     public String[] phoneNumbers;
+    String TAG = "Tag:";
     public static double latitude, longitude;
     private static final int
             KEY_BUTTON_EVENT = 0,
@@ -64,6 +66,7 @@ public class StartActivity extends AppCompatActivity implements GoogleApiClient.
     private Location mLastLocation;
     private GoogleApiClient mGoogleApiClient;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,9 +75,11 @@ public class StartActivity extends AppCompatActivity implements GoogleApiClient.
 
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addApi(Wearable.API)
                     .addConnectionCallbacks(this)
                     .addOnConnectionFailedListener(this)
-                    .addApi(LocationServices.API).build();
+                    .addApi(LocationServices.API)
+                    .build();
         }
 
 
@@ -287,7 +292,4 @@ public class StartActivity extends AppCompatActivity implements GoogleApiClient.
 
     }
 }
-
-
-
 
