@@ -78,5 +78,5 @@
         android:layout_below="@+id/escalateThreat"
         android:layout_toRightOf="@+id/modeDescription"
         android:layout_toEndOf="@+id/modeDescription" />
-    
+
 </RelativeLayout>
