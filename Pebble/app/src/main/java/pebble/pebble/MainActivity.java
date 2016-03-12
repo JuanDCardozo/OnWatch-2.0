@@ -10,14 +10,18 @@ import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
 import android.app.Activity;
 import android.content.Context;
+import android.view.ViewGroup.LayoutParams;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.content.SharedPreferences;
+import android.view.View.OnClickListener;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -32,6 +36,11 @@ import android.widget.SimpleCursorAdapter;
 
 public class MainActivity extends AppCompatActivity {
     EditText ed1, ed2, ed3, ed4, ed5, ed6, ed7, ed8, ed9, ed10;
+    private EditText iEditText;
+    private Button addButton;
+    private RelativeLayout rLayout;
+    TextView textView = new TextView(this);
+
     Button b1;
     public static final String myPREFERENCES = "MyPrefs";
     public static final String Name1 = "name1Key";
@@ -50,15 +59,26 @@ public class MainActivity extends AppCompatActivity {
     // public final Intent intent = new Intent(this, StartActivity.class);
     public static final String Phone = "phoneKey";
     SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences sp = getSharedPreferences(myPREFERENCES, Activity.MODE_PRIVATE);
+
 
         opencheck = sp.getInt(Opened, 0);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*New layout stuff*/
+        iEditText = (EditText) findViewById(R.id.textView2); //Edit text box
+        addButton = (Button) findViewById(R.id.button2);     //Add button
+        rLayout = (RelativeLayout) findViewById(R.id.rLayout); //Relative Layout
+
+        addButton.setOnClickListener(onClick());
+
+        /*---------------*/
+        /*
         ed1 = (EditText)findViewById(R.id.editText1);
         ed2 = (EditText)findViewById(R.id.editText2);
         ed3 = (EditText)findViewById(R.id.editText3);
@@ -116,21 +136,31 @@ public class MainActivity extends AppCompatActivity {
                 ed10.setHint(returnPhone5);}
 
 
-        }
+        }*/
 
         sharedPreferences = getSharedPreferences(myPREFERENCES, Context.MODE_PRIVATE);
 
-
-
-
-
-
     }
 
+    // What happens when the add button is clicked
+    private OnClickListener onClick() {
+        return new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rLayout.addView(createText(iEditText.getText().toString()));
+            }
+        };
+    }
 
+    private TextView createText(String text) {
+        final LayoutParams lparams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        final TextView textview = new TextView(this);
+        textview.setLayoutParams(lparams);
+        textview.setText(text);
+        return textview;
+    }
 
-
-
+/*
     public void storeData(View view){
         sharedPreferences = getSharedPreferences(myPREFERENCES, Context.MODE_PRIVATE);
         String n1str  = ed1.getText().toString();
@@ -222,6 +252,7 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("PHONES", numArray);
         startActivity(i);
     }
+    */
 
 
 
