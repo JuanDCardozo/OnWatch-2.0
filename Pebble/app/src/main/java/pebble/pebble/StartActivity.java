@@ -3,7 +3,10 @@ package pebble.pebble;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Location;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
@@ -23,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
 import android.location.LocationManager;
+import android.media.MediaRecorder;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -31,9 +35,12 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
+
 import com.getpebble.android.kit.PebbleKit;
 import com.getpebble.android.kit.util.PebbleDictionary;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.UUID;
 
 public class StartActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
@@ -55,6 +62,14 @@ public class StartActivity extends AppCompatActivity implements GoogleApiClient.
     public static final String Phone5 = "phone5Key";
     public String[] phoneNumbers;
     public static double latitude, longitude;
+
+   //AUDIO RECORDING VARIABLES
+    private MediaRecorder recorder = null;
+    private boolean recording = false;
+    private static String mFileName = null;
+    private MediaPlayer   mPlayer = null;
+
+
     private static final int
             KEY_BUTTON_EVENT = 0,
             BUTTON_EVENT_UP = 1,
@@ -133,6 +148,14 @@ public class StartActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     protected void onPause() {
         super.onPause();
+        if(recorder != null){
+            recorder.release();
+            recorder = null;
+        }
+        if(mPlayer != null){
+            mPlayer.release();
+            mPlayer = null;
+        }
 
         unregisterReceiver(mReceiver);
     }
@@ -189,6 +212,13 @@ public class StartActivity extends AppCompatActivity implements GoogleApiClient.
             }
         }
 
+        if (mode == 4 && recording == false){
+            startRec();
+        } else if(mode <4 && recording == true){
+            stopRec();
+            startPlaying();
+        }
+
         switch (mode) {
             case 1:// Safe Mode
                 relativeLayoutB.setBackgroundResource(R.color.safeModeCol);
@@ -208,10 +238,10 @@ public class StartActivity extends AppCompatActivity implements GoogleApiClient.
                 relativeLayoutB.setBackgroundResource(R.color.alertModeCol);
                 displayMode.setText(R.string.alertModeTxt);
                 descriptionMode.setText(R.string.alertModeDesc);
-                String[] twoContacts = {phoneNumbers[0], phoneNumbers[1]};
-                sendSMS(twoContacts, getResources().getString(R.string.Message1));
-                String location = latalong();
-                sendSMS(twoContacts, location);
+                //String[] twoContacts = {phoneNumbers[0], phoneNumbers[1]};
+                //sendSMS(twoContacts, getResources().getString(R.string.Message1));
+                //String location = latalong();
+                //sendSMS(twoContacts, location);
 
                 break;
             case 3: // Threat Mode
@@ -220,10 +250,10 @@ public class StartActivity extends AppCompatActivity implements GoogleApiClient.
                 displayMode.setText(R.string.threatModeTxt);
                 descriptionMode.setText(R.string.threatModeDesc);
 
-                sendSMS(phoneNumbers, getResources().getString(R.string.Message2));
-                sendSMS(phoneNumbers, getResources().getString(R.string.Message2_1));
-                String location1 = latalong();
-                sendSMS(phoneNumbers, location1);
+                //sendSMS(phoneNumbers, getResources().getString(R.string.Message2));
+                //sendSMS(phoneNumbers, getResources().getString(R.string.Message2_1));
+                //String location1 = latalong();
+                //sendSMS(phoneNumbers, location1);
                 //sendSMS(phoneNumbers, getResources().getString(R.string.Message2));
 
                 break;
@@ -231,11 +261,12 @@ public class StartActivity extends AppCompatActivity implements GoogleApiClient.
                 relativeLayoutB.setBackgroundResource(R.color.panicModeCol);
                 displayMode.setText(R.string.panicModeTxt);
                 descriptionMode.setText(R.string.panicModeDesc);
-                sendSMS(phoneNumbers, getResources().getString(R.string.Message3));
-                sendSMS(phoneNumbers, getResources().getString(R.string.Message3_1));
-                String location2 = latalong();
-                sendSMS(phoneNumbers, location2);
+                //sendSMS(phoneNumbers, getResources().getString(R.string.Message3));
+                //sendSMS(phoneNumbers, getResources().getString(R.string.Message3_1));
+                //String location2 = latalong();
+                //sendSMS(phoneNumbers, location2);
                 // Text 911 when fully implemented
+
 
                 break;
 
@@ -264,6 +295,52 @@ public class StartActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onStop() {
         mGoogleApiClient.disconnect();
         super.onStop();
+    }
+//AUDIO RECORDING FUNCTIONS
+
+
+    private void startRec(){
+        recorder = new MediaRecorder();
+        recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        recorder.setOutputFile(mFileName);
+        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        try {
+            recorder.prepare();
+        }catch (IOException e){
+            Log.e("record error", "prepare() failed");
+        }
+        recorder.start();
+        recording = true;
+    }
+
+    private void stopRec(){
+        recorder.stop();
+        recorder.release();
+        recorder = null;
+        recording = false;
+
+    }
+
+    public void startPlaying(){
+        mPlayer = new MediaPlayer();
+        try{
+            mPlayer.setDataSource(mFileName);
+            mPlayer.prepare();
+            mPlayer.start();
+        }catch (IOException e){
+            Log.e("play error", "prepare() failed");
+        }
+    }
+
+    private void stopPlaying(){
+        mPlayer.release();
+        mPlayer = null;
+    }
+
+    public StartActivity(){
+        mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
+        mFileName += "/audiorecordtest.3gp";
     }
 
 
