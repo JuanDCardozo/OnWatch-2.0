@@ -35,6 +35,114 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 public class MainActivity extends AppCompatActivity {
+    EditText contactText, numberText;
+    TextView c1,c2,c3,n1,n2,n3, added;
+    Button addButton, refreshButton, saved;
+    RelativeLayout rLayout;
+    String[] contact = new String[3]; //Contacts Stored
+    String[] numbers = new String[3];     //Numbers Stored
+    //Code from before
+    SharedPreferences sharedPreferences;
+    public static final String myPREFERENCES = "MyPrefs";
+    int opencheck = 0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        //Code from before
+        SharedPreferences sp = getSharedPreferences(myPREFERENCES, Activity.MODE_PRIVATE);
+        //opencheck = sp.getInt(Opened, 0);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        /*New layout stuff*/
+        contactText = (EditText) findViewById(R.id.textView2); //Edit contact text box
+        numberText = (EditText) findViewById(R.id.textView3);  //Edit number text box
+        rLayout = (RelativeLayout) findViewById(R.id.rLayout); //Relative Layout
+        addButton = (Button) findViewById(R.id.button2);     //Add button
+        refreshButton = (Button) findViewById(R.id.button3); //Show list button
+        added = (TextView) findViewById(R.id.textView4);
+        saved = (Button) findViewById(R.id.button);
+
+
+        c1 = (TextView) findViewById(R.id.c1);
+        c2 = (TextView) findViewById(R.id.c2);
+        c3 = (TextView) findViewById(R.id.c3);
+        n1 = (TextView) findViewById(R.id.n1);
+        n2 = (TextView) findViewById(R.id.n2);
+        n3 = (TextView) findViewById(R.id.n3);
+
+
+        OnClickListener refresh = new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                c1.setText("Contact #1: " + contact[0]);
+                n1.setText("Number  #1: " + numbers[0]);
+                c2.setText("Contact #2: " + contact[1]);
+                n2.setText("Number  #2: " + numbers[1]);
+                c3.setText("Contact #3: " + contact[2]);
+                n3.setText("Number  #3: " + numbers[2]);
+            }
+        };
+
+        OnClickListener onClick = new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String c = contactText.getText().toString();
+                String n = numberText.getText().toString();
+
+                for (int i = 0; i < 3; i++) {
+                    if (contact[i] == null) {
+                        contact[i] = c;
+                        numbers[i] = n;
+                        break;
+                    }
+                }
+
+                added.setVisibility(View.VISIBLE);
+
+                added.postDelayed(new Runnable() {
+                    public void run() {
+                        added.setVisibility(View.INVISIBLE);
+                    }
+                }, 1000);
+
+            }
+        };
+
+        OnClickListener savedC = new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), StartActivity.class);
+                i.putExtra("PHONES", numbers);
+                startActivity(i);
+            }
+        };
+
+        addButton.setOnClickListener(onClick);
+        refreshButton.setOnClickListener(refresh);
+        saved.setOnClickListener(savedC);
+
+        //Not sure what sharedPreferences does
+        sharedPreferences = getSharedPreferences(myPREFERENCES, Context.MODE_PRIVATE);
+
+    }
+
+    TextView createText(String text) {
+        final LayoutParams lparams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        final TextView textview = new TextView(this);
+        textview.setLayoutParams(lparams);
+        textview.setText(text);
+        return textview;
+    }
+
+}
+
+
+
+/*
+OLD CODE!!
+
+public class MainActivity extends AppCompatActivity {
     EditText ed1, ed2, ed3, ed4, ed5, ed6, ed7, ed8, ed9, ed10;
     private EditText iEditText;
     private Button addButton;
@@ -70,15 +178,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*New layout stuff*/
+
         iEditText = (EditText) findViewById(R.id.textView2); //Edit text box
         addButton = (Button) findViewById(R.id.button2);     //Add button
         rLayout = (RelativeLayout) findViewById(R.id.rLayout); //Relative Layout
 
         addButton.setOnClickListener(onClick());
 
-        /*---------------*/
-        /*
         ed1 = (EditText)findViewById(R.id.editText1);
         ed2 = (EditText)findViewById(R.id.editText2);
         ed3 = (EditText)findViewById(R.id.editText3);
@@ -136,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
                 ed10.setHint(returnPhone5);}
 
 
-        }*/
+        }
 
         sharedPreferences = getSharedPreferences(myPREFERENCES, Context.MODE_PRIVATE);
 
@@ -160,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
         return textview;
     }
 
-/*
+
     public void storeData(View view){
         sharedPreferences = getSharedPreferences(myPREFERENCES, Context.MODE_PRIVATE);
         String n1str  = ed1.getText().toString();
@@ -252,8 +358,9 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("PHONES", numArray);
         startActivity(i);
     }
-    */
+
 
 
 
 }
+*/
