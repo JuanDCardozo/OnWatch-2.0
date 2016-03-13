@@ -36,12 +36,11 @@
     <Button
         android:layout_width="@dimen/button_height"
         android:layout_height="@dimen/button_height"
-        android:text="@string/alertModeTxt"
         android:textColor="@color/textFieldB"
         android:onClick="checkThreat"
         android:id="@+id/escalateThreat"
         android:background="@drawable/danger"
-        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@+id/difuseThreat"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -49,14 +48,35 @@
         android:background="@drawable/safe"
         android:layout_width="@dimen/button_height"
         android:layout_height="@dimen/button_height"
-        android:text="@string/safeModeTxt"
         android:textColor="@color/textFieldB"
         android:id="@+id/difuseThreat"
         android:onClick="checkThreat"
         android:visibility="visible"
-        android:layout_below="@+id/modeDescription"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="123dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textField"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/safeModeTxt"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/escalateThreat"
+        android:layout_toLeftOf="@+id/modeDescription"
+        android:layout_toStartOf="@+id/modeDescription" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textField"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/alertModeTxt"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/escalateThreat"
+        android:layout_toRightOf="@+id/modeDescription"
+        android:layout_toEndOf="@+id/modeDescription" />
 
 </RelativeLayout>
