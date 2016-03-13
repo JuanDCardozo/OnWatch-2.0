@@ -61,9 +61,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/textField"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/safeModeTxt"
-        android:id="@+id/textView2"
+        android:id="@+id/safeView"
         android:layout_below="@+id/escalateThreat"
         android:layout_toLeftOf="@+id/modeDescription"
         android:layout_toStartOf="@+id/modeDescription" />
@@ -72,9 +72,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/textField"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/alertModeTxt"
-        android:id="@+id/textView3"
+        android:id="@+id/alertView"
         android:layout_below="@+id/escalateThreat"
         android:layout_toRightOf="@+id/modeDescription"
         android:layout_toEndOf="@+id/modeDescription" />
