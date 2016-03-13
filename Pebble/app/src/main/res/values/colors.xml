@@ -4,9 +4,9 @@
     <color name="colorPrimaryDark">#0e0e0e</color>
     <color name="colorAccent">#f2fcf3f6</color>
     <color name="safeModeCol">#1BFFBE</color>
-    <color name="alertModeCol">#d8fcf048</color>
+    <color name="alertModeCol">#FFD722</color>
     <color name="threatModeCol">#c9fa9609</color>
-    <color name="panicModeCol">#ea3330</color>
+    <color name="panicModeCol">#FF0050</color>
     <color name="textFieldB">#d53d3c3c</color>
     <color name="textField">#fcfcfc</color>
 </resources>
