@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
         del = (TextView) findViewById(R.id.textView10);
 
 
-
         c1 = (TextView) findViewById(R.id.c1);
         c2 = (TextView) findViewById(R.id.c2);
         c3 = (TextView) findViewById(R.id.c3);
@@ -86,6 +85,34 @@ public class MainActivity extends AppCompatActivity {
         n2 = (TextView) findViewById(R.id.n2);
         n3 = (TextView) findViewById(R.id.n3);
 
+        //DOES NOT SAVE FOR SOME REASON--------------------------------------------
+        String rn1 = preferenceSettings.getString(contact[0], contact[0]);
+        String rn2 = preferenceSettings.getString(contact[1], contact[1]);
+        String rn3 = preferenceSettings.getString(contact[2], contact[2]);
+        String nn1 = preferenceSettings.getString(numbers[0], numbers[0]);
+        String nn2 = preferenceSettings.getString(numbers[1], numbers[1]);
+        String nn3 = preferenceSettings.getString(numbers[2], numbers[2]);
+
+
+        if (rn1 != null) {
+            c1.setText("Contact #1:" + rn1);
+            n1.setText("Number #1:" + nn1);
+            c1.setVisibility(View.VISIBLE);
+            n1.setVisibility(View.VISIBLE);
+        }
+        if (rn2 != null) {
+            c2.setText("Contact #2:" + rn2);
+            n2.setText("Number #2:" + nn2);
+            c2.setVisibility(View.VISIBLE);
+            n2.setVisibility(View.VISIBLE);
+        }
+        if (rn3 != null) {
+            c3.setText("Contact #3:" + rn3);
+            n3.setText("Number #3:" + nn3);
+            c3.setVisibility(View.VISIBLE);
+            n3.setVisibility(View.VISIBLE);
+        }
+        //--------------------------------------------------------------------------
         //Added the hints for user to input
         contactText.setHint("Name");
         numberText.setHint("Phone Number");
