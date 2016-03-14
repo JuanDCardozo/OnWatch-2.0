@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 ok.setVisibility(View.VISIBLE);
 
                 eDelete.setHint("Insert number of contact (1-3)");
-                d = eDelete.getText().toString();
             }
         };
 
@@ -109,9 +108,21 @@ public class MainActivity extends AppCompatActivity {
                 deleted.setVisibility(View.INVISIBLE);
                 eDelete.setVisibility(View.INVISIBLE);
                 ok.setVisibility(View.INVISIBLE);
+                d = eDelete.getText().toString();
                 int de = Integer.parseInt(d);
-                de--;
+                de = de - 1;
                 contact[de] = null;
+                numbers[de] = null;
+                if (de == 0) {
+                    c1.setVisibility(View.INVISIBLE);
+                    n1.setVisibility(View.INVISIBLE);
+                } else if (de == 1) {
+                    c2.setVisibility(View.INVISIBLE);
+                    n2.setVisibility(View.INVISIBLE);
+                } else if (de == 2) {
+                    c3.setVisibility(View.INVISIBLE);
+                    n3.setVisibility(View.INVISIBLE);
+                }
 
                 del.setVisibility(View.VISIBLE);
                 del.postDelayed(new Runnable() {
@@ -134,6 +145,16 @@ public class MainActivity extends AppCompatActivity {
                     if (contact[i] == null) {
                         contact[i] = c;
                         numbers[i] = n;
+                        if (i == 0) {
+                            c1.setText("Contact #1: " + contact[i]);
+                            n1.setText("Number #1: " + numbers[i]);
+                        } else if (i == 1) {
+                            c2.setText("Contact #2: " + contact[i]);
+                            n2.setText("Number #2: " + numbers[i]);
+                        } else if (i == 2) {
+                            c3.setText("Contact #3: " + contact[i]);
+                            n3.setText("Number #3: " + numbers[i]);
+                        }
                         preferenceEditor.putString(contact[i],contact[i]);
                         preferenceEditor.putString(numbers[i], numbers[i]);
                         preferenceEditor.commit();
