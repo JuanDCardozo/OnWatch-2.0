@@ -34,6 +34,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import java.security.PrivilegedExceptionAction;
+
 public class MainActivity extends AppCompatActivity {
     EditText contactText, numberText, eDelete;
     TextView c1,c2,c3,n1,n2,n3, added, deleted, del;
@@ -41,16 +43,23 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout rLayout;
     String[] contact = new String[3]; //Contacts Stored
     String[] numbers = new String[3];     //Numbers Stored
+    private SharedPreferences preferenceSettings;
+    private SharedPreferences.Editor preferenceEditor;
+    private static final int PREFERENCE_MODE_PRIVATE = 0;
+
     //Code from before
-    SharedPreferences sharedPreferences;
-    public static final String myPREFERENCES = "MyPrefs";
+    //SharedPreferences sharedPreferences;
+    //public static final String myPREFERENCES = "MyPrefs";
     int opencheck = 0;
     String d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Code from before
-        SharedPreferences sp = getSharedPreferences(myPREFERENCES, Activity.MODE_PRIVATE);
+        //SharedPreferences sp = getSharedPreferences(myPREFERENCES, Activity.MODE_PRIVATE);
+        preferenceSettings = getPreferences(PREFERENCE_MODE_PRIVATE);
+        preferenceEditor = preferenceSettings.edit();
+
         //opencheck = sp.getInt(Opened, 0);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -125,6 +134,9 @@ public class MainActivity extends AppCompatActivity {
                     if (contact[i] == null) {
                         contact[i] = c;
                         numbers[i] = n;
+                        preferenceEditor.putString(contact[i],contact[i]);
+                        preferenceEditor.putString(numbers[i], numbers[i]);
+                        preferenceEditor.commit();
                         break;
                     }
                 }
@@ -172,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         ok.setOnClickListener(okay);
 
         //Not sure what sharedPreferences does
-        sharedPreferences = getSharedPreferences(myPREFERENCES, Context.MODE_PRIVATE);
+        //sharedPreferences = getSharedPreferences(myPREFERENCES, Context.MODE_PRIVATE);
 
     }
 
