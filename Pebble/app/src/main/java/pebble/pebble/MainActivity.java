@@ -35,9 +35,9 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 public class MainActivity extends AppCompatActivity {
-    EditText contactText, numberText;
-    TextView c1,c2,c3,n1,n2,n3, added;
-    Button addButton, refreshButton, saved;
+    EditText contactText, numberText, eDelete;
+    TextView c1,c2,c3,n1,n2,n3, added, deleted, del;
+    Button addButton, deleteButton, saved, ok;
     RelativeLayout rLayout;
     String[] contact = new String[3]; //Contacts Stored
     String[] numbers = new String[3];     //Numbers Stored
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     public static final String myPREFERENCES = "MyPrefs";
     int opencheck = 0;
+    String d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +60,14 @@ public class MainActivity extends AppCompatActivity {
         numberText = (EditText) findViewById(R.id.textView3);  //Edit number text box
         rLayout = (RelativeLayout) findViewById(R.id.rLayout); //Relative Layout
         addButton = (Button) findViewById(R.id.button2);     //Add button
-        refreshButton = (Button) findViewById(R.id.button3); //Show list button
+        deleteButton = (Button) findViewById(R.id.button3); //Delete Button
         added = (TextView) findViewById(R.id.textView4);
         saved = (Button) findViewById(R.id.button);
+        deleted =(TextView) findViewById(R.id.textView5);
+        eDelete = (EditText) findViewById(R.id.textView6);
+        ok = (Button) findViewById(R.id.button4);
+        del = (TextView) findViewById(R.id.textView10);
+
 
 
         c1 = (TextView) findViewById(R.id.c1);
@@ -71,25 +77,50 @@ public class MainActivity extends AppCompatActivity {
         n2 = (TextView) findViewById(R.id.n2);
         n3 = (TextView) findViewById(R.id.n3);
 
+        //Added the hints for user to input
+        contactText.setHint("Name");
+        numberText.setHint("Phone Number");
 
-        OnClickListener refresh = new OnClickListener() {
+
+        OnClickListener delete = new OnClickListener() {
             @Override
             public void onClick(View v) {
-                c1.setText("Contact #1: " + contact[0]);
-                n1.setText("Number  #1: " + numbers[0]);
-                c2.setText("Contact #2: " + contact[1]);
-                n2.setText("Number  #2: " + numbers[1]);
-                c3.setText("Contact #3: " + contact[2]);
-                n3.setText("Number  #3: " + numbers[2]);
+                deleted.setVisibility(View.VISIBLE);
+                eDelete.setVisibility(View.VISIBLE);
+                ok.setVisibility(View.VISIBLE);
+
+                eDelete.setHint("Insert number of contact (1-3)");
+                d = eDelete.getText().toString();
             }
         };
+
+        OnClickListener okay = new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleted.setVisibility(View.INVISIBLE);
+                eDelete.setVisibility(View.INVISIBLE);
+                ok.setVisibility(View.INVISIBLE);
+                int de = Integer.parseInt(d);
+                de--;
+                contact[de] = null;
+
+                del.setVisibility(View.VISIBLE);
+                del.postDelayed(new Runnable() {
+                    public void run() {
+                        del.setVisibility(View.INVISIBLE);
+                    }
+                }, 1000);
+            }
+        };
+
+
 
         OnClickListener onClick = new OnClickListener() {
             @Override
             public void onClick(View v) {
                 String c = contactText.getText().toString();
                 String n = numberText.getText().toString();
-
+                //Add contacts to array
                 for (int i = 0; i < 3; i++) {
                     if (contact[i] == null) {
                         contact[i] = c;
@@ -97,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                 }
-
+                //Timer that accounces that the name and number has been added
                 added.setVisibility(View.VISIBLE);
 
                 added.postDelayed(new Runnable() {
@@ -106,6 +137,23 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }, 1000);
 
+                //Prints out the added contacts
+                for (int i = 0; i < 3; i++) {
+                    if (contact[i] == null) {
+                        break;
+                    } else {
+                        if (i == 0) {
+                            c1.setVisibility(View.VISIBLE);
+                            n1.setVisibility(View.VISIBLE);
+                        } else if (i == 1) {
+                            c2.setVisibility(View.VISIBLE);
+                            n2.setVisibility(View.VISIBLE);
+                        } else if (i == 2) {
+                            c3.setVisibility(View.VISIBLE);
+                            n3.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
             }
         };
 
@@ -119,8 +167,9 @@ public class MainActivity extends AppCompatActivity {
         };
 
         addButton.setOnClickListener(onClick);
-        refreshButton.setOnClickListener(refresh);
+        deleteButton.setOnClickListener(delete);
         saved.setOnClickListener(savedC);
+        ok.setOnClickListener(okay);
 
         //Not sure what sharedPreferences does
         sharedPreferences = getSharedPreferences(myPREFERENCES, Context.MODE_PRIVATE);
