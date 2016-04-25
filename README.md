@@ -1,16 +1,19 @@
-# PebbleGuard
-onWatch - HackUCSC2016 
+# OnWatch 2.0 
 
 Created by:
 Juan D. Cardozo
-Garrett Stoll
-Anthony Pan
 Jerry Ku
-Weibin Zhong
+Timmy Kwan
+Chloe Jiang
+
+This project improved the application onWatch - HackUCSC2016. Improved the functions, cleaned the code, added new functionality and designed a better graphic interface.
+
+Improvements:
+- Improved the graphic interface.
+- The threat states can be updated from the device without needing a pebble watch.
+- There is recording of sound once in PANIC MODE
+- Once a person de-escalates their threat state, then it notifies the emergency contacts of that change
 
 
-It's always dangerous to be by yourself when you are alone, especially at night. Without any friends or even witnesses to watch out for you, you are extremely vulnerable and your life is highly at risk. We wanted to build an application to tackle this problem, and with our new program, OnWatch, being by yourself isn't so bad after all.
- 
- 
  
  
