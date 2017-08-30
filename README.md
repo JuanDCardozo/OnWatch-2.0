@@ -1,4 +1,3 @@
-# OnWatch 2.0 
 ![initial](https://user-images.githubusercontent.com/14318068/29863410-77e02646-8d24-11e7-9fae-5c5cbfa7ac54.jpg)
 ![goal](https://user-images.githubusercontent.com/14318068/29863686-4ddb16d4-8d25-11e7-97a9-48fb790bc924.jpg)
 ![what it does](https://user-images.githubusercontent.com/14318068/29863687-4ddb2c28-8d25-11e7-8e3d-aae09a190903.jpg)
